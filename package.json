@@ -1,0 +1,52 @@
+{
+  "name": "dsh-seance",
+  "version": "0.1.0",
+  "description": "Summon the residual echo of a finished subagent and ask what it last remembers.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edwardyh/dsh-seance.git"
+  },
+  "homepage": "https://github.com/edwardyh/dsh-seance#readme",
+  "bugs": {
+    "url": "https://github.com/edwardyh/dsh-seance/issues"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "session",
+    "subagent"
+  ],
+  "engines": {
+    "dsh": ">=0.2.2-rc.1"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": ["@deepseek-ai/dsh-client-ui-commands"]
+    }
+  }
+}
