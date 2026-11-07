@@ -12,6 +12,8 @@ The Séance 要做的，只是在删除之前，先点一支蜡烛。
 
 命令面板中唯一的命令：**`/dsh-seance.summon`**
 
+命令面板中显示为「招魂」，也可直接输入 `/dsh-seance.summon` 执行。
+
 执行流程：
 
 1. 通过 `ctx.sessionQuery.filterSessions` 查询当前工作目录下的会话，筛出 `live: false`、`parentSession != null` 且日志仍可读取的候选。
@@ -78,7 +80,7 @@ The Séance 要做的，只是在删除之前，先点一支蜡烛。
 
 - 幽灵是 `ctx.llm.stream` 的一次补全，不是独立的子 Agent 实例；没有独立 session，也没有自己的生命周期。
 - `ctx.subagents` + external provider 的方案暂停：内置 spawn 走 `ctx.agents.create`，会落盘子会话并在父会话追加 `subagent/catalog`，本质上倾向持久化，与“幽灵不写持久化存储”冲突。
-- 仅支持中文 UI。
+- 命令与对话框文案仅提供中文；插件列表中的标题/描述提供 en/zh 元数据（locale/en.json、locale/zh.json）。
 - 仅支持 Web GUI（依赖 `shell.overlay` slot）；headless/ACP 没有命令适配器。
 - 依赖当前会话的模型路由，或回退到默认模型；没有独立选择模型的入口。
 - 回答非流式：整段生成完成后一次性返回。
@@ -128,10 +130,10 @@ curl -s -X POST http://127.0.0.1:<port>/dsh-seance/api \
   -d '{"op":"candidates","parentSessionId":"<当前会话 id>"}'
 ```
 
-单元测试（碎片提取与预算）：
+单元测试（碎片提取 + 客户端渲染 smoke）：
 
 ```bash
-node --test test/extract.test.mjs
+npm test
 ```
 
 ## License
