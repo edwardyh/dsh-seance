@@ -1,3 +1,5 @@
+[English](README.en.md) | 中文
+
 # dsh-seance
 
 在删除之前，先听一听。
