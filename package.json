@@ -1,7 +1,7 @@
 {
   "name": "dsh-seance",
   "version": "0.1.0",
-  "description": "Summon the residual echo of a finished subagent and ask what it last remembers.",
+  "description": "Summon a ghost from the residual logs of a terminated subagent. It can only answer from the fragments it left behind. Not a debugger, not an observability panel—just listen before you delete.",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,7 +16,10 @@
     "deepseek-harness",
     "plugin",
     "session",
-    "subagent"
+    "subagent",
+    "subagent-logs",
+    "session-recovery",
+    "agent-forensics"
   ],
   "engines": {
     "dsh": ">=0.2.2-rc.1"
@@ -47,7 +50,9 @@
     "client": {
       "platform": "web",
       "immediately": true,
-      "inject": ["@deepseek-ai/dsh-client-ui-commands"]
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-commands"
+      ]
     }
   }
 }
